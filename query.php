@@ -1,7 +1,7 @@
 <?php
 $servername = "sysmysql8.auburn.edu";
-$username = "username";
-$password = "password";
+$username = "jdh0102";
+$password = "Megabotx#123";
 $dbname = "Test_Table";
 
 // Create connection
