@@ -1,8 +1,8 @@
 <?php
-$servername = "sysmysql8.auburn.edu@3306";
+$servername = "sysmysql8.auburn.edu";
 $username = "jdh0102";
 $password = "Megabotx#1";
-$dbname = "Test_Table";
+$dbname = "jdh0102db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
