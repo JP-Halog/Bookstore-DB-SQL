@@ -1,5 +1,5 @@
 <?php
-$servername = "sysmysql8.auburn.edu@3306@jdh0102db";
+$servername = "sysmysql8.auburn.edu@3306";
 $username = "jdh0102";
 $password = "Megabotx#1";
 $dbname = "Test_Table";
