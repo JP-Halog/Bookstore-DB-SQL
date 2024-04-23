@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Bookstore Database Interface</title>
   <style>
     body {
@@ -52,5 +53,21 @@
       }
     ?>
   </div>
+  <script>
+    $(document).ready(function(){
+      $("form").on("submit", function(event){
+        event.preventDefault();
+
+        $.ajax({
+          url: "execute_query.php",
+          type: "post",
+          data: $(this).serialize(),
+          success: function(response){
+            $("#results").html(response);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
