@@ -22,11 +22,29 @@ if (stripos($query, "DROP") !== false) {
   // Execute the query
   if ($result = $conn->query($query)) {
     if ($result->num_rows > 0) {
+      // Start a table
+      echo "<table>";
+      
+      // Output headers
+      $fields = $result->fetch_fields();
+      echo "<tr>";
+      foreach ($fields as $field) {
+        echo "<th>| " . $field->name . "</th>";
+      }
+      echo "</tr>";
+      
       // Output data of each row
       while($row = $result->fetch_assoc()) {
-        print_r($row);
-        echo "<br>";
+        echo "<tr>";
+        foreach ($row as $cell) {
+          echo "<td>| " . $cell . "</td>";
+        }
+        echo "</tr>";
       }
+      
+      // End the table
+      echo "</table>";
+      
       echo "Number of rows retrieved: " . $result->num_rows;
     } else {
       echo "Table created/updated. Rows affected: " . $conn->affected_rows;

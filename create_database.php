@@ -1,8 +1,8 @@
 <?php
-$servername = "sysmysql8.auburn.edu";
-$username = "username";
-$password = "password";
-$dbname = "test_table";
+$servername = "localhost"; // or your server's IP
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -23,15 +23,41 @@ if ($conn->query($sql) === TRUE) {
 // Select database
 $conn->select_db($dbname);
 
-// SQL to create tables
-$sql = file_get_contents("schema.sql");
+// Path to the .csv file
+$csvFile = 'path_to_your_csv_file.csv';
 
-// Execute SQL to create tables
-if ($conn->multi_query($sql) === TRUE) {
-  echo "Tables created successfully\n";
-} else {
-  echo "Error creating tables: " . $conn->error;
+// Open the .csv file
+$fileHandle = fopen($csvFile, 'r');
+
+// Get the first line and determine the number of fields
+$firstLine = fgetcsv($fileHandle);
+$numFields = count($firstLine);
+
+// Create a table with the same number of fields
+$sql = "CREATE TABLE IF NOT EXISTS your_table_name (";
+for ($i = 0; $i < $numFields; $i++) {
+  $sql .= "field$i VARCHAR(255), ";
 }
+$sql = rtrim($sql, ', ') . ")";
+if ($conn->query($sql) === TRUE) {
+  echo "Table created successfully\n";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+// Insert data from the .csv file into the table
+while (($line = fgetcsv($fileHandle)) !== FALSE) {
+  $values = "'" . implode("', '", $line) . "'";
+  $sql = "INSERT INTO your_table_name VALUES ($values)";
+  if ($conn->query($sql) === TRUE) {
+    echo "Record inserted successfully\n";
+  } else {
+    echo "Error inserting record: " . $conn->error;
+  }
+}
+
+// Close the .csv file
+fclose($fileHandle);
 
 // Close connection
 $conn->close();
