@@ -4,7 +4,7 @@ $username = "jdh0102";
 $password = "Megabotx#1";
 $dbname = "jdh0102db";
 
-// Create connection
+// Create connection  
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
