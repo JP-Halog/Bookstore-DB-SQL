@@ -45,5 +45,12 @@
     <textarea id="query" name="query" rows="4" cols="50"></textarea>
     <input type="submit" value="Submit">
   </form>
+  <div id="results">
+    <?php
+      if (isset($_POST["query"])) {
+        include "execute_query.php";
+      }
+    ?>
+  </div>
 </body>
 </html>
