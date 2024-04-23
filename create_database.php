@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; // or your server's IP
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$servername = "sysmysql8.auburn.edu"; // or your server's IP
+$username = "jdh0102";
+$password = "Megabotx#1";
+$dbname = "jdh0102db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -12,19 +12,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-// Create database
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-  echo "Database created successfully\n";
-} else {
-  echo "Error creating database: " . $conn->error;
-}
-
-// Select database
-$conn->select_db($dbname);
-
 // Path to the .csv file
-$csvFile = 'path_to_your_csv_file.csv';
+$csvFile = 'db_book.csv';
 
 // Open the .csv file
 $fileHandle = fopen($csvFile, 'r');
@@ -34,7 +23,7 @@ $firstLine = fgetcsv($fileHandle);
 $numFields = count($firstLine);
 
 // Create a table with the same number of fields
-$sql = "CREATE TABLE IF NOT EXISTS your_table_name (";
+$sql = "CREATE TABLE IF NOT EXISTS db_book (";
 for ($i = 0; $i < $numFields; $i++) {
   $sql .= "field$i VARCHAR(255), ";
 }
