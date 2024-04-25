@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Path to the .csv file
-$csvFile = 'db_customer.csv';
+$csvFile = 'db_supplier.csv';
 
 // Open the .csv file
 $fileHandle = fopen($csvFile, 'r');
@@ -22,7 +22,7 @@ $fileHandle = fopen($csvFile, 'r');
 $columnNames = fgetcsv($fileHandle);
 
 // Create a table with the same number of fields
-$sql = "CREATE TABLE IF NOT EXISTS db_customer (";
+$sql = "CREATE TABLE IF NOT EXISTS db_supplier (";
 foreach ($columnNames as $columnName) {
   $sql .= "$columnName VARCHAR(255), ";
 }
@@ -36,7 +36,7 @@ if ($conn->query($sql) === TRUE) {
 // Insert data from the .csv file into the table
 while (($line = fgetcsv($fileHandle)) !== FALSE) {
   $values = "'" . implode("', '", $line) . "'";
-  $sql = "INSERT INTO db_customer VALUES ($values)";
+  $sql = "INSERT INTO db_supplier VALUES ($values)";
   if ($conn->query($sql) === TRUE) {
     echo "Record inserted successfully\n";
   } else {
