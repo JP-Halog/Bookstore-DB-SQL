@@ -40,7 +40,7 @@
   </style>
 </head>
 <body>
-  <h1>Bookstore Database Interface</h1>
+  <h1>JDH0102 JP Halog's Bookstore Database Interface</h1>
   <form method="post" action="execute_query.php">
     <label for="query">Enter SQL Query:</label>
     <textarea id="query" name="query" rows="4" cols="50"></textarea>
