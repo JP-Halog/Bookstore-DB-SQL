@@ -1,4 +1,10 @@
 1. Show the subject names of books supplied by *supplier2*.
+SELECT db_subject.CategoryName
+FROM db_book
+INNER JOIN db_supplier ON db_book.SupplierID = db_supplier.SupplierID
+INNER JOIN db_subject ON db_book.SubjectID = db_subject.SubjectID
+WHERE db_supplier.CompanyName = 'supplier2';
+
 2. Show the name and price of the most expensive book supplied by
      *supplier3*.
 3. Show the unique names of all books ordered by *lastname1
