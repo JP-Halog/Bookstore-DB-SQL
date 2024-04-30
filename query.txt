@@ -4,13 +4,48 @@ FROM db_book
 INNER JOIN db_supplier ON db_book.SupplierID = db_supplier.SupplierID
 INNER JOIN db_subject ON db_book.SubjectID = db_subject.SubjectID
 WHERE db_supplier.CompanyName = 'supplier2';
+| CategoryName
+| category1
+| category2
+Number of rows retrieved: 2
 
 2. Show the name and price of the most expensive book supplied by
      *supplier3*.
+SELECT b.Title, (b.UnitPrice)
+FROM db_book b
+WHERE b.UnitPrice = (Select MAX(b.UnitPrice) from db_book b WHERE b.SupplierID=3)
+| Title	| UnitPrice
+| book7	| 56.90
+Number of rows retrieved: 1
+
 3. Show the unique names of all books ordered by *lastname1
      firstname1*.
+SELECT DISTINCT(b.Title), c.LastName , c.FirstName
+FROM db_book b
+JOIN db_order_detail od ON b.BookID = od.BookID
+JOIN db_order o ON od.OrderID = o.OrderID
+JOIN db_customer c ON o.CustomerID = c.CustomerID
+where c.LastName = 'lastname1' and c.FirstName = 'firstname1';
+| Title	| LastName	| FirstName
+| book1	| lastname1	| firstname1
+| book4	| lastname1	| firstname1
+| book6	| lastname1	| firstname1
+| book7	| lastname1	| firstname1
+Number of rows retrieved: 4
+
 4. Show the title of books which have more than 10 units in stock.
+SELECT Title
+FROM db_book
+WHERE Quantity > 10;
+| Title
+| book4
+| book6
+| book7
+Number of rows retrieved: 3
+
 5. Show the total price *lastname1 firstname1* has paid for the books.
+
+
 6. Show the names of the customers who have paid less than $80 in
      totals.
 7. Show the name of books supplied by *supplier2*.

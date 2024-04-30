@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Path to the .csv file
-$csvFile = 'db_order_detail.csv';
+$csvFile = 'order_detail.csv';
 
 // Open the .csv file
 $fileHandle = fopen($csvFile, 'r');
